@@ -8,15 +8,19 @@
 
 import UIKit
 
+
+
+
 class CryptoViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    var cryptos = [CryptoModel]()
     
-    
-  
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -26,11 +30,24 @@ class CryptoViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        <#code#>
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "cryptoCell", for: indexPath) as? CryptoCell {
+            
+            cell.cryptoNameLabel.text = "Neck"
+            cell.cryptoPriceLabel.text = "\(2093)"
+            
+            
+             return cell;
+        }else {
+            return UITableViewCell()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     

@@ -14,6 +14,7 @@
 		DACEDF9C20E441F900F69235 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DACEDF9A20E441F900F69235 /* LaunchScreen.storyboard */; };
 		DACEDFA420E44F2900F69235 /* CryptoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DACEDFA320E44F2900F69235 /* CryptoViewController.swift */; };
 		DACEDFA820E450F800F69235 /* CryptoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DACEDFA720E450F800F69235 /* CryptoModel.swift */; };
+		DACEDFAB20E4579100F69235 /* CryptoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DACEDFAA20E4579100F69235 /* CryptoCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		DACEDF9D20E441F900F69235 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DACEDFA320E44F2900F69235 /* CryptoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoViewController.swift; sourceTree = "<group>"; };
 		DACEDFA720E450F800F69235 /* CryptoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoModel.swift; sourceTree = "<group>"; };
+		DACEDFAA20E4579100F69235 /* CryptoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoCell.swift; sourceTree = "<group>"; };
 		DDB86CEAC720B0D3E93F9C98 /* Pods_CheckCrypto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CheckCrypto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -95,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				DACEDF9520E441F900F69235 /* Main.storyboard */,
+				DACEDFAA20E4579100F69235 /* CryptoCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -229,6 +232,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DACEDFAB20E4579100F69235 /* CryptoCell.swift in Sources */,
 				DACEDFA820E450F800F69235 /* CryptoModel.swift in Sources */,
 				DACEDF9220E441F900F69235 /* AppDelegate.swift in Sources */,
 				DACEDFA420E44F2900F69235 /* CryptoViewController.swift in Sources */,

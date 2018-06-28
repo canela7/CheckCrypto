@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,13 +24,44 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cryptoCell" rowHeight="141" id="y23-5V-pvf">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cryptoCell" rowHeight="141" id="y23-5V-pvf" customClass="CryptoCell" customModule="CheckCrypto" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="141"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="y23-5V-pvf" id="Vfb-Ui-sIp">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="140.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="TqY-MJ-f2E">
+                                                    <rect key="frame" x="23" y="19" width="329" height="103"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="cryptoName" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="yVK-w3-P52">
+                                                            <rect key="frame" x="0.0" y="0.0" width="150" height="103"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="cryptoPrice" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w8g-vX-6MV">
+                                                            <rect key="frame" x="180" y="0.0" width="149" height="103"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="TqY-MJ-f2E" firstAttribute="centerX" secondItem="Vfb-Ui-sIp" secondAttribute="centerX" id="AZc-Vf-xMM"/>
+                                                <constraint firstItem="TqY-MJ-f2E" firstAttribute="centerY" secondItem="Vfb-Ui-sIp" secondAttribute="centerY" id="Nbj-hl-hyZ"/>
+                                                <constraint firstItem="TqY-MJ-f2E" firstAttribute="leading" secondItem="Vfb-Ui-sIp" secondAttribute="leadingMargin" constant="8" id="ZJP-fe-gsN"/>
+                                                <constraint firstItem="TqY-MJ-f2E" firstAttribute="top" secondItem="Vfb-Ui-sIp" secondAttribute="topMargin" constant="8" id="eEI-jJ-eRZ"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="TqY-MJ-f2E" secondAttribute="trailing" constant="8" id="fmX-9y-Ihy"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="TqY-MJ-f2E" secondAttribute="bottom" constant="8" id="v7o-c4-38a"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="cryptoNameLabel" destination="yVK-w3-P52" id="gcf-zA-9nB"/>
+                                            <outlet property="cryptoPriceLabel" destination="w8g-vX-6MV" id="lZw-4m-dyh"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
