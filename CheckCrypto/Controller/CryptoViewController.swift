@@ -15,33 +15,33 @@ import SwiftyJSON
 
 class CryptoViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var cryptos = [CryptoModel]()
+    typealias JSONStandard = [String:AnyObject]
     
-    var URL_API = "https://api.coinmarketcap.com/v2/ticker/?limit=10"
+    var cryptosList = [CryptoModel]()
+    
+    var cryptoCurrency: CryptoModel!
+    
+    @IBOutlet weak var tableView: UITableView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        getCryptoData(url: URL_API)
+        //callAlamo(url: URL_API)
         
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
+        getCryptoData(url: URL_API)
+    }    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cryptos.count
+        return cryptosList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "cryptoCell", for: indexPath) as? CryptoCell {
-            
-            cell.cryptoNameLabel.text = "Neck"
-            cell.cryptoPriceLabel.text = "\(2093)"
+
+           let crypto = cryptosList[indexPath.row]
+           cell.configureCell(crypto: crypto)
             
             
              return cell;
@@ -55,47 +55,95 @@ class CryptoViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     
+func getCryptoData(url: String){
     
+//    let cryptos = CryptoModel(name: "Litecoin", symbol: "LTC", rank: 6, price: 90)
+//    self.cryptosList.append(cryptos)
     
-    //
-    //    //MARK: - Networking
-    //    /***************************************************************/
-    
-//    func getCryptoData(url: String) {
-//
-//        Alamofire.request(url, method: .get)
-//            .responseJSON { response in
-//                if response.result.isSuccess {
-//
-//                    print("Sucess! Got the Bitcoin Data")
-//                    let bitcoinJSON : JSON = JSON(response.result.value!)
-//
-//                    self.updateBitcoinData(json: bitcoinJSON)
-//
-//                } else {
-//                    print("Error: \(String(describing: response.result.error))")
-//                    self.bitcoinPriceLabel.text = "Connection Issues"
-//                }
-//        }
-//
-//    }
+    Alamofire.request(url, method: .get).responseJSON { (response) in
+        if response.result.isSuccess {
+            print("Sucess!")
 
-    
-    func getCryptoData(url: String){
-        Alamofire.request(url, method: .get).responseJSON { (response) in
-            if response.result.isSuccess {
-                
-                print("Sucess!")
-                let cryptoJSON : JSON = JSON(response.result.value!)
-                print(cryptoJSON)
-                
-            }else {
-                print("Error: \(String(describing: response.result.error))")
-                
-                
+//           print(response.result.value)
+            
+            if let dict = response.result.value as? Dictionary<String, AnyObject> {
+                if let data = dict["data"] as? Dictionary<String,AnyObject>{
+                    
+                    if let bitcoin = data["1"] as? Dictionary<String, AnyObject>{
+                        
+                        let name = bitcoin["name"] as? String
+                        
+                        let symbol = bitcoin["symbol"] as? String
+                        
+                        let rank = bitcoin["rank"] as? Int
+                        
+                        if let quotes = bitcoin["quotes"] as? Dictionary<String, AnyObject>{
+                            if let USD = quotes["USD"] as? Dictionary<String, AnyObject> {
+                                if let price = USD["price"] as? Double {
+                                   // print(price)
+                                    
+                                    let crypto = CryptoModel(name: name!, symbol: symbol!, rank: rank!, price: price)
+                                     self.cryptosList.append(crypto)
+                                }
+                            }
+                        }
+                        
+                    }
+                    
+                    if let litecoin = data["2"] as? Dictionary<String,AnyObject>{
+                         let name = litecoin["name"] as? String
+                        
+                        let rank = litecoin["rank"] as? Int
+                        
+                        let symbol = litecoin["symbol"] as? String
+                        
+                        if let quotes = litecoin["quotes"] as? Dictionary<String, AnyObject>{
+                            if let USD = quotes["USD"] as? Dictionary<String, AnyObject> {
+                                if let price = USD["price"] as? Double {
+                                    
+                                    let crypto = CryptoModel(name: name!, symbol: symbol!, rank: rank!, price: price)
+                                    self.cryptosList.append(crypto)
+                                }
+                            }
+                        }
+                        
+                        
+                    }
+                    
+                    if let stellar = data["512"] as? Dictionary<String, AnyObject>{
+                         let name = stellar["name"] as? String
+                        
+                         let rank = stellar["rank"] as? Int
+                        
+                         let symbol = stellar["symbol"] as? String
+                        
+                        if let quotes = stellar["quotes"] as? Dictionary<String, AnyObject>{
+                            if let USD = quotes["USD"] as? Dictionary<String, AnyObject> {
+                                if let price = USD["price"] as? Double {
+                                    let crypto = CryptoModel(name: name!, symbol: symbol!, rank: rank!, price: price)
+                                    self.cryptosList.append(crypto)
+                                }
+                            }
+                        }
+                        
+                    }
             }
         }
-    }
+        }else {
+                print("Error: \(String(describing: response.result.error))")
+            }
+        
+           self.tableView.reloadData()
+        
+        }
     
+    
+}
+
+    
+    
+
+
+
     
 }

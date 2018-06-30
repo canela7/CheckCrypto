@@ -35,13 +35,13 @@
                                                     <rect key="frame" x="23" y="19" width="329" height="103"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="cryptoName" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="yVK-w3-P52">
-                                                            <rect key="frame" x="0.0" y="0.0" width="150" height="103"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="149.5" height="103"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="cryptoPrice" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w8g-vX-6MV">
-                                                            <rect key="frame" x="180" y="0.0" width="149" height="103"/>
+                                                            <rect key="frame" x="179.5" y="0.0" width="149.5" height="103"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -74,6 +74,9 @@
                         <viewLayoutGuide key="safeArea" id="Ph7-ep-dXF"/>
                     </view>
                     <navigationItem key="navigationItem" title="Crypto" id="LgE-LG-1wh"/>
+                    <connections>
+                        <outlet property="tableView" destination="op9-EP-NXd" id="P9M-hr-iZZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oQf-Tb-RCm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

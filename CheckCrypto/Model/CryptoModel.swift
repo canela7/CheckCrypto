@@ -7,43 +7,61 @@
 //
 
 import Foundation
+import Alamofire
 
 
 class CryptoModel {
-    private var name: String!
-    private var symbol: String!
-    private var rank: Int!
-    private var price: Double!
     
-    var _name: String {
-        if name == nil {
-            name = ""
+     private var _name: String!
+     private var _symbol: String!
+     private var _rank: Int!
+     private var _price: Double!
+    
+    
+    init(name: String, symbol: String, rank: Int, price: Double) {
+        self._name = name
+        self._symbol = symbol
+        self._rank = rank
+        self._price = price
+    }
+    
+    var name: String {
+        if _name == nil {
+            _name = "N/A"
         }
-        return name
+        return _name
     }
     
-    
-    var _symbol: String {
-        if symbol == nil {
-            symbol = ""
+    var symbol: String {
+        if _symbol == nil {
+            _symbol = "N/A"
         }
-        return symbol
+        return _symbol
     }
     
-    
-    var _rank: Int {
-        if rank == nil {
-            rank = 0
+    var rank: Int {
+        if _rank == nil {
+            _rank = 0
         }
-       return rank
+        return _rank
+    }
+    
+    var price: Double {
+        if _price == nil {
+            _price = 0
+        }
+        return _price
     }
     
     
-    var _price: Double{
-        return price
+    func downloadCryptoDetail(completed: DownloadComplete){
+        Alamofire.request(URL_API).responseJSON { (response) in
+            
+        }
     }
     
-    
+
+ 
     
     
     

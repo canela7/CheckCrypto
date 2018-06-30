@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		985F66516C0785F9829C92F2 /* Pods_CheckCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDB86CEAC720B0D3E93F9C98 /* Pods_CheckCrypto.framework */; };
+		DAC0EBF620E742D400AC02FC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC0EBF520E742D400AC02FC /* Constants.swift */; };
 		DACEDF9220E441F900F69235 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DACEDF9120E441F900F69235 /* AppDelegate.swift */; };
 		DACEDF9720E441F900F69235 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DACEDF9520E441F900F69235 /* Main.storyboard */; };
 		DACEDF9920E441F900F69235 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DACEDF9820E441F900F69235 /* Assets.xcassets */; };
@@ -20,6 +21,7 @@
 /* Begin PBXFileReference section */
 		6AA3286AAEB6B7E76523C3DB /* Pods-CheckCrypto.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CheckCrypto.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CheckCrypto/Pods-CheckCrypto.debug.xcconfig"; sourceTree = "<group>"; };
 		A5936E7433E7D0BAEEBF31D1 /* Pods-CheckCrypto.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CheckCrypto.release.xcconfig"; path = "Pods/Target Support Files/Pods-CheckCrypto/Pods-CheckCrypto.release.xcconfig"; sourceTree = "<group>"; };
+		DAC0EBF520E742D400AC02FC /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		DACEDF8E20E441F900F69235 /* CheckCrypto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CheckCrypto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DACEDF9120E441F900F69235 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DACEDF9620E441F900F69235 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				DACEDFA320E44F2900F69235 /* CryptoViewController.swift */,
+				DAC0EBF520E742D400AC02FC /* Constants.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -232,6 +235,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAC0EBF620E742D400AC02FC /* Constants.swift in Sources */,
 				DACEDFAB20E4579100F69235 /* CryptoCell.swift in Sources */,
 				DACEDFA820E450F800F69235 /* CryptoModel.swift in Sources */,
 				DACEDF9220E441F900F69235 /* AppDelegate.swift in Sources */,
