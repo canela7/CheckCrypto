@@ -31,6 +31,9 @@ class CryptoViewController: UIViewController, UITableViewDelegate, UITableViewDa
         //callAlamo(url: URL_API)
         
         getCryptoData(url: URL_API)
+        
+        getCryptoBitcoin(url: URL_BITCOIN)
+        
     }    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -64,8 +67,7 @@ func getCryptoData(url: String){
         if response.result.isSuccess {
             print("Sucess!")
 
-//           print(response.result.value)
-            
+
             if let dict = response.result.value as? Dictionary<String, AnyObject> {
                 if let data = dict["data"] as? Dictionary<String,AnyObject>{
                     
@@ -139,11 +141,44 @@ func getCryptoData(url: String){
     
     
 }
-
     
     
-
-
-
-    
+    func getCryptoBitcoin(url: String) {
+        Alamofire.request(URL_BITCOIN).responseJSON { (response) in
+            if response.result.isSuccess {
+                if let dict = response.result.value as? Dictionary<String, AnyObject> {
+                    if let data = dict["data"] as? Dictionary<String,AnyObject>{
+                        
+                        if let name = data["name"] as? String {
+                             print(name)
+                        }
+                        
+                        if let symbol = data["symbol"] as? String {
+                            print(symbol)
+                        }
+                        
+                        
+                        if let rank = data["rank"] as? Int {
+                            print(rank)
+                        }
+                        
+                        if let totalSupply = data["total_supply"] as? Double {
+                            print(totalSupply)
+                        }
+                        
+                        if let maxSupply = data["max_supply"] as? Double {
+                            print(maxSupply)
+                        }
+                        
+                        if let quotes = data["quotes"] as? [Dictionary<String,AnyObject>], quotes.count > 0{
+                            if let USD = quotes[0]["price"] as? Double {
+                                print(USD)
+                            }
+                        }
+             
+                    }
+                }
+            }
+        }
+    }
 }
