@@ -22,6 +22,11 @@ class CryptoCell: UITableViewCell {
 
         cryptoNameLabel.text = self.crypto.name
         cryptoPriceLabel.text = "\(String(describing: crypto.price))"
+        
     }
+    
+    
+    
+    
 
 }

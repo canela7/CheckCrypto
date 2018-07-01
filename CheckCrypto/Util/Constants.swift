@@ -15,9 +15,5 @@ let URL_CRYPTO = "/v2/ticker/"
 
 let URL_BITCOIN = "https://api.coinmarketcap.com/v2/ticker/1/"
 
-
-
-//https:/api.coinmarketcap.com/v2/ticker/1/
-
-
 typealias DownloadComplete = () -> ()
+

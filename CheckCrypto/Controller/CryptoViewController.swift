@@ -10,9 +10,6 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-
-
-
 class CryptoViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     typealias JSONStandard = [String:AnyObject]
@@ -32,7 +29,7 @@ class CryptoViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         getCryptoData(url: URL_API)
         
-        getCryptoBitcoin(url: URL_BITCOIN)
+       // getCryptoBitcoin(url: URL_BITCOIN)
         
     }    
     
@@ -54,24 +51,30 @@ class CryptoViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+         performSegue(withIdentifier: "goToCryptoData", sender: self)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToCryptoData"{
+            if let destinationVC = segue.destination as? CryptoDataViewController {
+                if let index = tableView.indexPathForSelectedRow {
+                    destinationVC.crypto = cryptosList[index.row]
+                }
+            }
+        }
+    }
     
 func getCryptoData(url: String){
-    
-//    let cryptos = CryptoModel(name: "Litecoin", symbol: "LTC", rank: 6, price: 90)
-//    self.cryptosList.append(cryptos)
-    
     Alamofire.request(url, method: .get).responseJSON { (response) in
         if response.result.isSuccess {
             print("Sucess!")
-
-
+            
             if let dict = response.result.value as? Dictionary<String, AnyObject> {
                 if let data = dict["data"] as? Dictionary<String,AnyObject>{
                     
                     if let bitcoin = data["1"] as? Dictionary<String, AnyObject>{
+                        
+                        let id = bitcoin["id"] as? Int
                         
                         let name = bitcoin["name"] as? String
                         
@@ -83,8 +86,8 @@ func getCryptoData(url: String){
                             if let USD = quotes["USD"] as? Dictionary<String, AnyObject> {
                                 if let price = USD["price"] as? Double {
                                    // print(price)
-                                    
-                                    let crypto = CryptoModel(name: name!, symbol: symbol!, rank: rank!, price: price)
+
+                                    let crypto = CryptoModel(name: name!, cryptoId: id!, symbol: symbol!, rank: rank!, price: price)
                                      self.cryptosList.append(crypto)
                                 }
                             }
@@ -95,6 +98,8 @@ func getCryptoData(url: String){
                     if let litecoin = data["2"] as? Dictionary<String,AnyObject>{
                          let name = litecoin["name"] as? String
                         
+                        let id = litecoin["id"] as? Int
+                        
                         let rank = litecoin["rank"] as? Int
                         
                         let symbol = litecoin["symbol"] as? String
@@ -102,18 +107,19 @@ func getCryptoData(url: String){
                         if let quotes = litecoin["quotes"] as? Dictionary<String, AnyObject>{
                             if let USD = quotes["USD"] as? Dictionary<String, AnyObject> {
                                 if let price = USD["price"] as? Double {
-                                    
-                                    let crypto = CryptoModel(name: name!, symbol: symbol!, rank: rank!, price: price)
+
+                                    let crypto = CryptoModel(name: name!, cryptoId: id!, symbol: symbol!, rank: rank!, price: price)
                                     self.cryptosList.append(crypto)
                                 }
                             }
                         }
-                        
-                        
                     }
                     
                     if let stellar = data["512"] as? Dictionary<String, AnyObject>{
                          let name = stellar["name"] as? String
+                        
+                         let id = stellar["id"] as? Int
+                        
                         
                          let rank = stellar["rank"] as? Int
                         
@@ -122,7 +128,8 @@ func getCryptoData(url: String){
                         if let quotes = stellar["quotes"] as? Dictionary<String, AnyObject>{
                             if let USD = quotes["USD"] as? Dictionary<String, AnyObject> {
                                 if let price = USD["price"] as? Double {
-                                    let crypto = CryptoModel(name: name!, symbol: symbol!, rank: rank!, price: price)
+                                   
+                                    let crypto = CryptoModel(name: name!, cryptoId: id!, symbol: symbol!, rank: rank!, price: price)
                                     self.cryptosList.append(crypto)
                                 }
                             }
@@ -143,42 +150,55 @@ func getCryptoData(url: String){
 }
     
     
-    func getCryptoBitcoin(url: String) {
-        Alamofire.request(URL_BITCOIN).responseJSON { (response) in
-            if response.result.isSuccess {
-                if let dict = response.result.value as? Dictionary<String, AnyObject> {
-                    if let data = dict["data"] as? Dictionary<String,AnyObject>{
-                        
-                        if let name = data["name"] as? String {
-                             print(name)
-                        }
-                        
-                        if let symbol = data["symbol"] as? String {
-                            print(symbol)
-                        }
-                        
-                        
-                        if let rank = data["rank"] as? Int {
-                            print(rank)
-                        }
-                        
-                        if let totalSupply = data["total_supply"] as? Double {
-                            print(totalSupply)
-                        }
-                        
-                        if let maxSupply = data["max_supply"] as? Double {
-                            print(maxSupply)
-                        }
-                        
-                        if let quotes = data["quotes"] as? [Dictionary<String,AnyObject>], quotes.count > 0{
-                            if let USD = quotes[0]["price"] as? Double {
-                                print(USD)
-                            }
-                        }
-             
-                    }
-                }
-            }
-        }
-    }
+//    func getCryptoBitcoin(url: String) {
+//        Alamofire.request(URL_BITCOIN).responseJSON { (response) in
+//            if response.result.isSuccess {
+//                if let dict = response.result.value as? Dictionary<String, AnyObject> {
+//                    if let data = dict["data"] as? Dictionary<String,AnyObject>{
+//
+//                        if let id = data["id"] as? Int {
+//                            print(id)
+//                        }
+//
+//                        if let name = data["name"] as? String {
+//                             print(name)
+//                        }
+//
+//                        if let symbol = data["symbol"] as? String {
+//                            print(symbol)
+//                        }
+//
+//
+//                        if let rank = data["rank"] as? Int {
+//                            print(rank)
+//                        }
+//
+//                        if let totalSupply = data["total_supply"] as? Double {
+//                            print(totalSupply)
+//                        }
+//
+//                        if let maxSupply = data["max_supply"] as? Double {
+//                            print(maxSupply)
+//                        }
+//
+//                        if let quotes = data["quotes"] as? [Dictionary<String,AnyObject>], quotes.count > 0{
+//                            if let USD = quotes[0]["price"] as? Double {
+//                                print(USD)
+//
+//                            }
+//                        }
+//
+//                    }
+//                }
+//            }
+//        }
+//    }
+//
+    
+    
+    
+    
+    
+    
+    
 }
