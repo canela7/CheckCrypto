@@ -24,12 +24,14 @@ class CryptoModel {
     
     var _cryptoUrl: String!
     
-    init(name: String, cryptoId: Int) {
+    init(name: String, cryptoId: Int, symbol: String) {
         self._name = name
         self._cryptoId = cryptoId
+        self._symbol = symbol
         
         _cryptoUrl = "\(URL_BASE)\(URL_CRYPTO)\(self.cryptoId)/"
     }
+    
     
     init(name: String, symbol: String, rank: Int, price: Double) {
         self._name = name
@@ -40,6 +42,9 @@ class CryptoModel {
         _cryptoUrl = "\(URL_BASE)\(URL_CRYPTO)\(self.cryptoId)/"
         
     }
+
+    
+    
     
     init(name: String, cryptoId: Int, symbol: String, rank: Int, price: Double) {
         self._name = name

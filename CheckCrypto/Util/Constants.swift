@@ -10,6 +10,8 @@ import Foundation
 
 let URL_API = "https://api.coinmarketcap.com/v2/ticker/?limit=10"
 
+let URL_CRYPTOS = "https://api.coinmarketcap.com/v2/listings/"
+
 let URL_BASE = "https://api.coinmarketcap.com"
 let URL_CRYPTO = "/v2/ticker/"
 

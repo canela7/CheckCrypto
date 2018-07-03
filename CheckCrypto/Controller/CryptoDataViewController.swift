@@ -48,15 +48,10 @@ class CryptoDataViewController: UIViewController {
         }else {
              maxSupplyLabel.text = "\(crypto.maxsupply)"
         }
-        
-    
-        
     }
     
     @IBAction func backButtonPressed(_ sender: Any) {
-       navigationController?.popViewController(animated: true)
+        navigationController?.popViewController(animated: true)
     }
-    
-    
 
 }
